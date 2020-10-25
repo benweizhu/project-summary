@@ -1,0 +1,11 @@
+@startuml C4_Elements
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+Person(beesUser, "Bees User", "Trainer/Trainee")
+System(beeMaster, "Bee Master", "Master Platform")
+System(beeAuth, "Bee Auth", "Auth Platform")
+
+Rel(beesUser, beeMaster, "Use", "User Activity")
+Rel(beesUser, beeAuth, "Authentication", "SSO")
+Rel(beeMaster, beeAuth, "User Info", "User Info CRUD")
+@enduml
