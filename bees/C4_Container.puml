@@ -1,0 +1,21 @@
+@startuml C4_Elements
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+Container(beeMasterService, "Bee Master Service", "Spring Boot", "Bee Master Backend Service")
+Container(beeGaia, "Bee Gaia", "Spring Boot", "Bee Gaia ")
+Container(kafka, "Kafka", "Aliyun Kafka", "Command/Event Kafka")
+Container(beeGaiaDB, "Bee Gaia DB", "MySQL", "Graphic Events")
+Container(beeMasterApp, "Bee Master App", "AngularJS Web APP", "SPA")
+Container(beeMasterServiceDB, "Bee Master Service DB", "MySQL", "Optional Description")
+Container(beeMasterServiceCache, "Bee Master Service Cache", "Redis", "User Info Cache")
+
+Rel(beeMasterApp, beeGaia, "WebSocket", "WebSocket")
+Rel(beeMasterApp, beeMasterService, "API", "Restful API")
+Rel(beeGaia, kafka, "Sending command", "Send user operation command")
+Rel(kafka, beeGaia, "Consume Event", "Consume broadcast event")
+Rel(kafka, beeMasterService, "Consume command", "Consume command")
+Rel(beeMasterService, kafka, "Sending event", "Sending event")
+Rel(beeGaia, beeGaiaDB, "CRUD", "Optional Technology")
+Rel(beeMasterService, beeMasterServiceDB, "CRUD", "Domain model CRUD")
+Rel(beeMasterService, beeMasterServiceCache, "CRUD", "user CRUD")
+@enduml
