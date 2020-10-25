@@ -1,0 +1,12 @@
+@startuml C4_Elements
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+Container(o9AdapterService, "o9 Adapter Service", "Spring Boot", "On Azure Cloud")
+Container(inventoryService, "Inventory Domain Service", "Spring Boot", "On Prem Cloud")
+Container(inventoryCache, "Inventory Domain Service Cache", "Redis", "Cache/Persistent Original Data")
+Container(eventhub, "Kafka", "Aliyun Kafka", "Command/Event Kafka")
+
+Rel(inventoryService, eventhub, "Message Queue", "Domain Data Stream")
+Rel(inventoryService, inventoryCache, "CURD", "Raw Data Cache")
+Rel(eventhub, o9AdapterService, "Message Queue", "Domain Data Stream")
+@enduml
