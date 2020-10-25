@@ -1,13 +1,13 @@
 @startuml C4_Elements
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
 
-Container(beeMasterService, "Bee Master Service", "Spring Boot", "Bee Master Backend Service")
-Container(beeGaia, "Bee Gaia", "Spring Boot", "Bee Gaia ")
-Container(kafka, "Kafka", "Aliyun Kafka", "Command/Event Kafka")
-Container(beeGaiaDB, "Bee Gaia DB", "MySQL", "Graphic Events")
 Container(beeMasterApp, "Bee Master App", "AngularJS Web APP", "SPA")
+Container(beeGaia, "Bee Gaia", "Spring Boot", "Bee Gaia ")
+Container(beeGaiaDB, "Bee Gaia DB", "MySQL", "Graphic Events")
+Container(beeMasterService, "Bee Master Service", "Spring Boot", "Bee Master Backend Service")
 Container(beeMasterServiceDB, "Bee Master Service DB", "MySQL", "Optional Description")
 Container(beeMasterServiceCache, "Bee Master Service Cache", "Redis", "User Info Cache")
+Container(kafka, "Kafka", "Aliyun Kafka", "Command/Event Kafka")
 
 Rel(beeMasterApp, beeGaia, "WebSocket", "WebSocket")
 Rel(beeMasterApp, beeMasterService, "API", "Restful API")
